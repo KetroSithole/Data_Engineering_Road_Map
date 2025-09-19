@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Engineering Roadmap - Your Journey to Becoming a Data Engineer</title>
+
+  <!-- Boisy-rap vibes: bold display font + crisp body -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --bg1:#667eea; --bg2:#764ba2;
+      --ink:#1a1a1a; --panel:#ffffff;
+      --ink-sub:#64748b;
+      --brand:#4338ca; --brand-2:#8b5cf6;
+      --hot1:#ff6b6b; --hot2:#ee5a24;
+      --mint:#4ade80; --blue:#3b82f6; --amber:#f59e0b; --red:#ef4444; --violet:#8b5cf6;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      line-height:1.6;color:var(--ink);
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(255,255,255,.15), transparent),
+                  linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 100%);
+      min-height:100vh;
+    }
+
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+    /* Header */
+    header{
+      background:rgba(255,255,255,.08);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(255,255,255,.2);
+      padding:1rem 0; position:sticky; top:0; z-index:100;
+    }
+    .header-content{display:flex;justify-content:space-between;align-items:center}
+    .logo{
+      font-family:'Bebas Neue', system-ui, sans-serif;
+      letter-spacing:.5px;
+      font-size:2rem; color:#fff; text-decoration:none; display:flex;align-items:center;gap:10px
+    }
+    .logo::before{content:"🎚️";font-size:1.8rem}
+
+    nav ul{display:flex;list-style:none;gap:1.2rem; flex-wrap:wrap}
+    nav a{color:#fff;text-decoration:none;font-weight:600;transition:.25s;padding:.5rem .9rem;border-radius:10px}
+    nav a:hover{background:rgba(255,255,255,.18);transform:translateY(-2px)}
+
+    /* Hero */
+    .hero{text-align:center;padding:4rem 0;color:#fff; position:relative; overflow:hidden}
+    .hero:after{
+      content:"";
+      position:absolute; inset:auto -20% -40% -20%;
+      height:260px;
+      background:conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,.25), rgba(255,255,255,0) 40%);
+      filter:blur(40px); animation:spin 18s linear infinite;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .hero h1{
+      font-family:'Bebas Neue', system-ui, sans-serif;
+      font-size:4rem; line-height:1.05; letter-spacing:.5px;
+      margin-bottom:.6rem;
+      background:linear-gradient(45deg,#fff,#e0e7ff);
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+      text-shadow:0 2px 20px rgba(0,0,0,.15);
+    }
+    .hero p{font-size:1.2rem;opacity:.95;max-width:700px;margin:0 auto 1.6rem}
+    .tagline{
+      display:inline-flex;align-items:center;gap:.5rem;
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25);
+      padding:.35rem .75rem; border-radius:999px; font-weight:700; font-size:.95rem; margin-bottom:1.1rem
+    }
+    .cta-button{
+      background:linear-gradient(45deg,var(--hot1),var(--hot2));
+      color:#fff;padding:1rem 2rem;font-size:1.05rem;font-weight:700;border:none;border-radius:999px;
+      cursor:pointer;text-decoration:none;display:inline-block;transition:.3s;
+      box-shadow:0 10px 30px rgba(255,107,107,.3)
+    }
+    .cta-button:hover{transform:translateY(-3px); box-shadow:0 15px 40px rgba(255,107,107,.45)}
+    .pulse{animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+    /* Main */
+    .main-content{
+      background:#fff;border-radius:20px 20px 0 0;margin-top:2rem;padding:3rem 0;min-height:100vh;
+      box-shadow:0 -10px 50px rgba(0,0,0,.1)
+    }
+    .section{padding:3rem 0}
+    .section h2{
+      font-size:2.4rem;font-weight:800;text-align:center;margin-bottom:2.2rem;color:#2c3e50;position:relative
+    }
+    .section h2::after{
+      content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%);
+      width:110px; height:5px;
+      background:linear-gradient(90deg, var(--hot1), var(--hot2));
+      border-radius:999px; box-shadow:0 6px 18px rgba(238,90,36,.35)
+    }
+
+    /* Roadmap cards */
+    .roadmap-phase{
+      background:linear-gradient(145deg,#f8faff 0%,#e8f2ff 100%);
+      border-radius:16px; padding:2.2rem; margin-bottom:1.6rem;
+      box-shadow:0 8px 30px rgba(0,0,0,.1);
+      border-left:6px solid; transition:.25s; position:relative; overflow:hidden
+    }
+    .roadmap-phase::before{
+      content:''; position:absolute; top:-40px; right:-40px; width:160px; height:160px;
+      background:radial-gradient(circle at 30% 30%, rgba(102,126,234,.18), rgba(118,75,162,.0) 60%);
+      transform:rotate(12deg)
+    }
+    .roadmap-phase:hover{transform:translateY(-5px); box-shadow:0 15px 40px rgba(0,0,0,.15)}
+    .phase-1{border-left-color:var(--mint)} .phase-2{border-left-color:var(--blue)}
+    .phase-3{border-left-color:var(--amber)} .phase-4{border-left-color:var(--red)}
+    .phase-5{border-left-color:var(--violet)}
+
+    .phase-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem}
+    .phase-icon{
+      font-size:2rem;width:58px;height:58px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(45deg, rgba(102,126,234,.1), rgba(118,75,162,.1))
+    }
+    .phase-title{font-size:1.6rem;font-weight:800;color:#1e293b;margin:0}
+    .phase-duration{background:rgba(102,126,234,.12);color:var(--brand);padding:.25rem .7rem;border-radius:999px;font-size:.9rem;font-weight:700}
+
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.1rem;margin-top:1rem}
+    .skill-card{background:#fff;padding:1.1rem;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,.08); border:2px solid transparent;transition:.25s}
+    .skill-card:hover{border-color:#667eea; transform:translateY(-2px); box-shadow:0 8px 25px rgba(0,0,0,.12)}
+    .skill-title{font-weight:800;color:#1e293b;margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem}
+    .skill-description{color:var(--ink-sub);font-size:.95rem;line-height:1.5}
+
+    .resources-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:.9rem;margin-top:1.1rem}
+    .resource-item{background:linear-gradient(45deg,#f8faff,#e8f2ff);padding:1rem 1.2rem;border-radius:10px;border-left:4px solid #667eea;transition:.25s}
+    .resource-item:hover{background:linear-gradient(45deg,#e8f2ff,#dbeafe); transform:translateX(5px)}
+    .resource-link{color:var(--brand);text-decoration:none;font-weight:800;display:flex;align-items:center;gap:.5rem}
+    .resource-link:hover{color:#3730a3}
+    .resource-link::after{content:"↗";font-size:.8rem}
+
+    /* Stats */
+    .stats{background:linear-gradient(135deg,#111827 0%,#374151 100%);color:#fff;padding:3.2rem 0;text-align:center;border-radius:16px}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-top:1.2rem}
+    .stat-item{padding:1.6rem;background:rgba(255,255,255,.08);border-radius:16px;border:1px solid rgba(255,255,255,.2)}
+    .stat-number{font-size:2.6rem;font-weight:900;color:#60a5fa;display:block;margin-bottom:.4rem}
+    .stat-label{font-size:1.05rem;opacity:.95}
+
+    /* Tools */
+    .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1.2rem}
+    .tool-item{background:#fff;padding:1.6rem 1rem;border-radius:12px;text-align:center;box-shadow:0 4px 15px rgba(0,0,0,.08);transition:.25s;border:2px solid transparent}
+    .tool-item:hover{border-color:#667eea; transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,.15)}
+    .tool-icon{font-size:2rem;margin-bottom:.6rem;display:block}
+    .tool-name{font-weight:800;color:#1e293b;margin-bottom:.25rem}
+    .tool-category{font-size:.9rem;color:var(--ink-sub)}
+
+    /* Footer */
+    footer{background:#1e293b;color:#fff;text-align:center;padding:3rem 0;margin-top:2rem}
+    .footer-content{max-width:800px;margin:0 auto}
+    .footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1.2rem;flex-wrap:wrap}
+    .footer-links a{color:#94a3b8;text-decoration:none;transition:.2s}
+    .footer-links a:hover{color:#fff}
+
+    /* Progress bar */
+    .progress-container{position:fixed;top:0;left:0;width:100%;height:4px;background:rgba(255,255,255,.2);z-index:1000}
+    .progress-bar{height:100%;background:linear-gradient(90deg,var(--hot1),var(--hot2));width:0%;transition:width .15s}
+
+    /* Equalizer footer stripe (rap vibe) */
+    .eq{
+      height:10px; margin-top:18px; display:flex; gap:6px; justify-content:center; align-items:flex-end
+    }
+    .eq span{
+      width:6px; background:linear-gradient(180deg,var(--hot1),var(--hot2));
+      display:inline-block; border-radius:3px; animation:beat 1.1s ease-in-out infinite;
+    }
+    .eq span:nth-child(2){animation-delay:.1s}
+    .eq span:nth-child(3){animation-delay:.2s}
+    .eq span:nth-child(4){animation-delay:.3s}
+    .eq span:nth-child(5){animation-delay:.4s}
+    @keyframes beat{
+      0%,100%{height:4px;opacity:.6}
+      50%{height:16px;opacity:1}
+    }
+
+    /* Responsive */
+    @media (max-width:768px){
+      .hero h1{font-size:3rem}
+      .hero p{font-size:1.05rem}
+      nav ul{flex-direction:column;gap:.6rem}
+      .section{padding:2rem 0}
+      .roadmap-phase{padding:1.3rem}
+      .phase-header{flex-direction:column;text-align:center;gap:.7rem}
+      .skills-grid,.resources-list{grid-template-columns:1fr}
+      .footer-links{flex-direction:column;gap:.8rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">DataEngineerPath</a>
+        <nav>
+          <ul>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#learn">Learn</a></li>
+            <li><a href="#sa-finance">SA Finance</a></li>
+            <li><a href="#community">Community</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="tagline">🎧 Craft clean data pipelines with swagger</div>
+      <h1>Master Data Engineering</h1>
+      <p>Your complete roadmap to becoming a skilled data engineer. From fundamentals to advanced concepts, we’ll guide you every step of the way.</p>
+      <a href="#roadmap" class="cta-button pulse">Start Your Journey</a>
+    </div>
+  </section>
+
+  <main class="main-content">
+    <div class="container">
+
+      <!-- Stats -->
+      <section class="stats" aria-label="Industry stats">
+        <h2 style="color:white;margin-bottom:1.2rem">Why Data Engineering?</h2>
+        <div class="stats-grid">
+          <div class="stat-item"><span class="stat-number">15k-30k</span><span class="stat-label">Average Salary Entry</span></div>
+          <div class="stat-item"><span class="stat-number">30%+</span><span class="stat-label">Job Growth Rate</span></div>
+          <div class="stat-item"><span class="stat-number">2000+</span><span class="stat-label">Open Positions</span></div>
+          <div class="stat-item"><span class="stat-number">6–12</span><span class="stat-label">Months to Master</span></div>
+        </div>
+      </section>
+
+      <!-- Roadmap -->
+      <section id="roadmap" class="section">
+        <h2>Learning Roadmap</h2>
+
+        <!-- Phase 1 -->
+        <div class="roadmap-phase phase-1">
+          <div class="phase-header">
+            <div class="phase-icon">🎯</div>
+            <div>
+              <h3 class="phase-title">Phase 1: Foundation</h3>
+              <span class="phase-duration">2–3 months</span>
+            </div>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-card"><div class="skill-title">🐍 Python Programming</div><div class="skill-description">Master Python basics, data structures, OOP, and libraries like pandas & numpy.</div></div>
+            <div class="skill-card"><div class="skill-title">🗄️ SQL Fundamentals</div><div class="skill-description">Queries, joins, aggregations, window functions, and relational design.</div></div>
+            <div class="skill-card"><div class="skill-title">🖥️ Command Line</div><div class="skill-description">Unix/Linux commands, shell scripting, and terminal navigation.</div></div>
+            <div class="skill-card"><div class="skill-title">📊 Stats & Math</div><div class="skill-description">Core probability & statistics for working with data.</div></div>
+          </div>
+
+          <div class="resources-list">
+            <div class="resource-item"><a class="resource-link" href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener">Python.org Tutorial</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://sqlbolt.com/" target="_blank" rel="noopener">SQLBolt (Interactive)</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://learn.microsoft.com/powershell/scripting/overview" target="_blank" rel="noopener">Shell Scripting Basics</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://www.khanacademy.org/math/statistics-probability" target="_blank" rel="noopener">Khan Academy Statistics</a></div>
+          </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="roadmap-phase phase-2">
+          <div class="phase-header">
+            <div class="phase-icon">🔧</div>
+            <div>
+              <h3 class="phase-title">Phase 2: Data Engineering Tools</h3>
+              <span class="phase-duration">2–3 months</span>
+            </div>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-card"><div class="skill-title">📦 Docker & Containers</div><div class="skill-description">Images, Dockerfiles, Compose, and orchestration basics.</div></div>
+            <div class="skill-card"><div class="skill-title">🌐 Apache Airflow</div><div class="skill-description">DAGs, scheduling, orchestration, and observability.</div></div>
+            <div class="skill-card"><div class="skill-title">🔄 Git</div><div class="skill-description">Branching, merging, PRs, and collaborative workflows.</div></div>
+            <div class="skill-card"><div class="skill-title">☁️ Cloud Basics (AWS/GCP/<strong>Azure</strong>)</div><div class="skill-description">Core compute, storage, networking, IAM, and cost basics.</div></div>
+          </div>
+
+          <div class="resources-list">
+            <div class="resource-item"><a class="resource-link" href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Docker – Get Started</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://airflow.apache.org/docs/" target="_blank" rel="noopener">Airflow Docs</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://learngitbranching.js.org/" target="_blank" rel="noopener">Learn Git Branching</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/" target="_blank" rel="noopener">Azure Basics (CAF)</a></div>
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="roadmap-phase phase-3">
+          <div class="phase-header">
+            <div class="phase-icon">🏗️</div>
+            <div>
+              <h3 class="phase-title">Phase 3: Data Processing & ETL</h3>
+              <span class="phase-duration">3–4 months</span>
+            </div>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-card"><div class="skill-title">⚡ Apache Spark</div><div class="skill-description">RDDs, DataFrames, Spark SQL, tuning, & jobs.</div></div>
+            <div class="skill-card"><div class="skill-title">🌊 Stream Processing</div><div class="skill-description">Kafka fundamentals & event-driven design.</div></div>
+            <div class="skill-card"><div class="skill-title">🏭 Data Warehousing</div><div class="skill-description">Snowflake, BigQuery, Redshift, Dimensional modeling.</div></div>
+            <div class="skill-card"><div class="skill-title">🔄 ETL/ELT Patterns</div><div class="skill-description">Batch vs streaming, CDC, orchestration patterns.</div></div>
+          </div>
+
+          <div class="resources-list">
+            <div class="resource-item"><a class="resource-link" href="https://spark.apache.org/docs/latest/" target="_blank" rel="noopener">Spark Guide</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://kafka.apache.org/quickstart" target="_blank" rel="noopener">Kafka Quickstart</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/" target="_blank" rel="noopener">Kimball Toolkit</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://docs.getdbt.com/" target="_blank" rel="noopener">dbt Docs</a></div>
+          </div>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="roadmap-phase phase-4">
+          <div class="phase-header">
+            <div class="phase-icon">☁️</div>
+            <div>
+              <h3 class="phase-title">Phase 4: Cloud & Infrastructure</h3>
+              <span class="phase-duration">2–3 months</span>
+            </div>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-card"><div class="skill-title">🏗️ IaC</div><div class="skill-description">Terraform and CloudFormation fundamentals.</div></div>
+            <div class="skill-card"><div class="skill-title">📊 Monitoring & Logging</div><div class="skill-description">Metrics, logs, tracing, alerts.</div></div>
+            <div class="skill-card"><div class="skill-title">🔒 Security & Governance</div><div class="skill-description">IAM, encryption, secrets, policy.</div></div>
+            <div class="skill-card"><div class="skill-title">⚖️ Kubernetes Basics</div><div class="skill-description">Pods, services, deployments, Helm.</div></div>
+          </div>
+
+          <div class="resources-list">
+            <div class="resource-item"><a class="resource-link" href="https://developer.hashicorp.com/terraform/learn" target="_blank" rel="noopener">Terraform Learn</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://prometheus.io/docs/introduction/overview/" target="_blank" rel="noopener">Prometheus</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://learn.microsoft.com/azure/security/fundamentals/overview" target="_blank" rel="noopener">Azure Security Fundamentals</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://kubernetes.io/docs/tutorials/" target="_blank" rel="noopener">Kubernetes Tutorials</a></div>
+          </div>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="roadmap-phase phase-5">
+          <div class="phase-header">
+            <div class="phase-icon">🚀</div>
+            <div>
+              <h3 class="phase-title">Phase 5: Advanced Topics</h3>
+              <span class="phase-duration">Ongoing</span>
+            </div>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-card"><div class="skill-title">🤖 ML Engineering</div><div class="skill-description">MLOps, model serving & CI/CD for ML.</div></div>
+            <div class="skill-card"><div class="skill-title">📈 Data Mesh & Architecture</div><div class="skill-description">Domain ownership, product thinking, interoperability.</div></div>
+            <div class="skill-card"><div class="skill-title">🔍 Data Quality</div><div class="skill-description">Testing, contracts, expectations & SLAs.</div></div>
+            <div class="skill-card"><div class="skill-title">📊 Business Intelligence</div><div class="skill-description">Dashboards, semantic layers, storytelling.</div></div>
+          </div>
+
+          <div class="resources-list">
+            <div class="resource-item"><a class="resource-link" href="https://mlflow.org/docs/latest/index.html" target="_blank" rel="noopener">MLflow Docs</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://martinfowler.com/articles/data-monolith-to-mesh.html" target="_blank" rel="noopener">Data Mesh Principles</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://greatexpectations.io/" target="_blank" rel="noopener">Great Expectations</a></div>
+            <div class="resource-item"><a class="resource-link" href="https://learn.microsoft.com/power-bi/" target="_blank" rel="noopener">Power BI Learn</a></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tools -->
+      <section id="tools" class="section">
+        <h2>Essential Tools & Technologies</h2>
+        <div class="tools-grid">
+          <div class="tool-item"><span class="tool-icon">🐍</span><div class="tool-name">Python</div><div class="tool-category">Programming</div></div>
+          <div class="tool-item"><span class="tool-icon">🗄️</span><div class="tool-name">PostgreSQL</div><div class="tool-category">Database</div></div>
+          <div class="tool-item"><span class="tool-icon">⚡</span><div class="tool-name">Apache Spark</div><div class="tool-category">Processing</div></div>
+          <div class="tool-item"><span class="tool-icon">🌐</span><div class="tool-name">Apache Airflow</div><div class="tool-category">Orchestration</div></div>
+          <div class="tool-item"><span class="tool-icon">📦</span><div class="tool-name">Docker</div><div class="tool-category">Containerization</div></div>
+          <div class="tool-item"><span class="tool-icon">☁️</span><div class="tool-name">AWS</div><div class="tool-category">Cloud</div></div>
+          <div class="tool-item"><span class="tool-icon">☁️</span><div class="tool-name">GCP</div><div class="tool-category">Cloud</div></div>
+          <div class="tool-item"><span class="tool-icon">☁️</span><div class="tool-name">Azure</div><div class="tool-category">Cloud</div></div>
+          <div class="tool-item"><span class="tool-icon">🌊</span><div class="tool-name">Apache Kafka</div><div class="tool-category">Streaming</div></div>
+          <div class="tool-item"><span class="tool-icon">🏗️</span><div class="tool-name">Terraform</div><div class="tool-category">Infrastructure</div></div>
+          <div class="tool-item"><span class="tool-icon">❄️</span><div class="tool-name">Snowflake</div><div class="tool-category">Warehouse</div></div>
+          <div class="tool-item"><span class="tool-icon">🔧</span><div class="tool-name">dbt</div><div class="tool-category">Transformation</div></div>
+          <div class="tool-item"><span class="tool-icon">🧱</span><div class="tool-name">Azure Databricks</div><div class="tool-category">Lakehouse</div></div>
+          <div class="tool-item"><span class="tool-icon">🪄</span><div class="tool-name">Azure Data Factory</div><div class="tool-category">Ingestion</div></div>
+          <div class="tool-item"><span class="tool-icon">🔷</span><div class="tool-name">Azure Synapse</div><div class="tool-category">Analytics</div></div>
+          <div class="tool-item"><span class="tool-icon">🗂️</span><div class="tool-name">Azure Storage</div><div class="tool-category">Data Lake</div></div>
+        </div>
+      </section>
+
+      <!-- Learn (Websites & YouTube) -->
+      <section id="learn" class="section">
+        <h2>Learn: Websites & YouTube</h2>
+        <div class="resources-list">
+          <!-- Websites -->
+          <div class="resource-item"><a class="resource-link" href="https://www.freecodecamp.org/news/tag/data-engineering/" target="_blank" rel="noopener">freeCodeCamp – Data Engineering</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://datatalks.club/" target="_blank" rel="noopener">DataTalks.Club (Community + Courses)</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://realpython.com/" target="_blank" rel="noopener">Real Python</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://mode.com/sql-tutorial/" target="_blank" rel="noopener">Mode Analytics – SQL Tutorial</a></div>
+          <!-- YouTube -->
+          <div class="resource-item"><a class="resource-link" href="https://www.youtube.com/@DataEngineerOne" target="_blank" rel="noopener">Data Engineer One (YouTube)</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://www.youtube.com/@SeattleDataGuy" target="_blank" rel="noopener">Seattle Data Guy (YouTube)</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://www.youtube.com/@AlexTheAnalyst" target="_blank" rel="noopener">Alex The Analyst (YouTube)</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://www.youtube.com/@MicrosoftDeveloper" target="_blank" rel="noopener">Microsoft Developer (Azure) (YouTube)</a></div>
+        </div>
+      </section>
+
+      <!-- South African Market & Finance -->
+      <section id="sa-finance" class="section">
+        <h2>South African Market & Finance</h2>
+        <p style="text-align:center; max-width:800px; margin:0 auto 1rem; color:#475569">
+          Stay current with local data sources for macro indicators, regulations, trading calendars, and fiscal policy.
+        </p>
+        <div class="resources-list">
+          <div class="resource-item"><a class="resource-link" href="https://www.jse.co.za/" target="_blank" rel="noopener">Johannesburg Stock Exchange (JSE)</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://www.resbank.co.za/en/home/what-we-do/statistics/releases/" target="_blank" rel="noopener">South African Reserve Bank (SARB) – Statistics</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://www.statssa.gov.za/" target="_blank" rel="noopener">Statistics South Africa (Stats SA)</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://www.treasury.gov.za/" target="_blank" rel="noopener">National Treasury – Budget & Documents</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://www.sars.gov.za/taxes/" target="_blank" rel="noopener">SARS – Taxes & Guides</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://www.fsca.co.za/" target="_blank" rel="noopener">FSCA – Financial Sector Conduct Authority</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://fred.stlouisfed.org/tags/series?t=south%20africa" target="_blank" rel="noopener">FRED – South Africa Time Series</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://investingcalendar.com/za" target="_blank" rel="noopener">ZA Economic/Market Calendars</a></div>
+        </div>
+      </section>
+
+      <!-- Community -->
+      <section id="community" class="section">
+        <h2>Community & Practice</h2>
+        <div class="resources-list">
+          <div class="resource-item"><a class="resource-link" href="https://www.meetup.com/topics/data-engineering/" target="_blank" rel="noopener">Meetup – Data Engineering</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://www.kaggle.com/datasets" target="_blank" rel="noopener">Kaggle Datasets</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://github.com/public-apis/public-apis" target="_blank" rel="noopener">Public APIs (Practice)</a></div>
+          <div class="resource-item"><a class="resource-link" href="https://discord.gg/datatalksclub" target="_blank" rel="noopener">DataTalks.Club Discord</a></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#roadmap">Roadmap</a>
+        <a href="#tools">Tools</a>
+        <a href="#learn">Learn</a>
+        <a href="#sa-finance">SA Finance</a>
+        <a href="#community">Community</a>
+      </div>
+      <p style="opacity:.9">Built for learners who like their pipelines clean and their beats heavy.</p>
+      <div class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+    </div>
+  </footer>
+
+  <!-- Tiny JS: progress bar + fade on scroll -->
+  <script>
+    (function(){
+      const bar = document.getElementById('progressBar');
+      const onScroll = () => {
+        const h = document.documentElement;
+        const scrolled = (h.scrollTop)/(h.scrollHeight - h.clientHeight);
+        bar.style.width = (scrolled*100).toFixed(2) + '%';
+      };
+      document.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+
+      const faders = document.querySelectorAll('.roadmap-phase');
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.style.animation = 'fadeInUp .6s ease forwards';
+            io.unobserve(e.target);
+          }
+        });
+      },{threshold:.12});
+      faders.forEach(el=>{el.style.opacity=.001; io.observe(el);});
+    })();
+  </script>
+
+  <!-- Reuse your original fadeInUp animation -->
+  <style>
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)}}
+  </style>
+</body>
+</html>
